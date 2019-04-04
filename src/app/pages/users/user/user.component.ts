@@ -16,4 +16,13 @@ export class UserComponent implements OnInit {
     console.log(this.user);
   }
 
+  handleBanClick() {
+    console.log(111);
+    const bannedUsersList = [];
+    bannedUsersList.push(this.user);
+    localStorage.setItem('bannedUsersList', JSON.stringify(bannedUsersList));
+
+    // var storedNames = JSON.parse(localStorage.getItem("names"));
+  }
+
 }
