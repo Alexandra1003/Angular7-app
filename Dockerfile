@@ -24,7 +24,7 @@
 
 FROM node:slim
 
-EXPOSE 8080
+EXPOSE 8000
 
 WORKDIR /usr/app
 
@@ -35,4 +35,5 @@ RUN npm install && npm install -g @angular/cli
 RUN npm run build -- --output-path=./build
 
 WORKDIR /usr/app/build
-CMD ng serve --port 8080
+
+CMD ng serve --port 8000
