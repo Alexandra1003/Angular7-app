@@ -2,15 +2,18 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../shared/config';
 import { Observable } from 'rxjs';
+import { IUser } from '../../shared/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService implements OnInit {
-  private UserList;
+export class UsersService {
   constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
-    // this.http.get(URL: `${API_URL}/users`);
+  getAllUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${API_URL}/users`);
+  }
+  getUserById(id: string): Observable<IUser> {
+    return this.http.get<IUser>(`${API_URL}/users/${id}`);
   }
 }
