@@ -23,8 +23,8 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  handleClick(elem) {
-    console.log(elem);
-    this.router.navigate([`/users/${elem.id}`]);
-  }
+  // handleClick(elem) {
+  //   console.log(elem);
+  //   this.router.navigate([`/user/${elem.id}`]);
+  // }
 }
