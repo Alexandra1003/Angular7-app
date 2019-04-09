@@ -1,8 +1,10 @@
-<p>{{userName}}</p>
 <div class="example-container">
-  <mat-form-field>
+  <mat-form-field class="input-wrapper">
     <input matInput [(ngModel)]="userName" placeholder="Enter user name..">
   </mat-form-field>
-</div>
 
-<a mat-raised-button [routerLink]="'/user/' + userName">Show</a>
+  <div class="button-wrapper">
+    <a mat-raised-button [routerLink]="'/user/' + userName">Show</a>
+  </div>
+
+</div>
