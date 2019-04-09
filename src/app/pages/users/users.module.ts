@@ -6,7 +6,7 @@ import { ReposComponent } from './user/repos/repos.component';
 import { UsersService } from './users.service';
 import { UserResolveService } from './user/user-resolve.service';
 import {MatSortModule, MatCardModule, MatTableModule} from '@angular/material';
-import { RouterModule, CanActivate } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';

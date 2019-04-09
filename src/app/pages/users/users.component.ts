@@ -22,9 +22,4 @@ export class UsersComponent implements OnInit {
       this.list.sort = this.sort;
     });
   }
-
-  // handleClick(elem) {
-  //   console.log(elem);
-  //   this.router.navigate([`/user/${elem.id}`]);
-  // }
 }

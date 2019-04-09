@@ -4,7 +4,7 @@
     <mat-card-title>{{user.login}}</mat-card-title>
     <mat-card-actions>
       <button mat-raised-button color="warn" (click)="handleBanClick()">BAN</button>
-      <button mat-raised-button color="warn" (click)="showRepos(user.repos_url)">Show Repos</button>
+      <button mat-raised-button color="warn" (click)="showRepos({reposUrl: user.repos_url, login: user.login} )">Show Repos</button>
     </mat-card-actions>
     <mat-card-subtitle>{{user.repos_url}}</mat-card-subtitle>
   </mat-card-header>
@@ -22,4 +22,3 @@
   </mat-card-content>
 </mat-card>
 <router-outlet></router-outlet>
-<!-- name="`/users/${user}`/repos" -->

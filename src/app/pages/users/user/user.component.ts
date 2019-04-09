@@ -13,25 +13,14 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.route.snapshot.data.user;
-    console.log('user!!!', this.user)
-    // localStorage.setItem('bannedUsersList', JSON.stringify([]));
+    console.log('user!!!', this.user);
   }
 
-  showRepos(userData: string) {
-    console.log(111, this.user);
-    this.router.navigate([`/user/${this.user.login}/repos`, { userData }]);
+  showRepos(userData: {}) {
+    this.router.navigate([`/user/${this.user.login}/repos`, userData ]);
   }
 
   handleBanClick() {
-    // debugger
-    // const bannedUsersList = JSON.parse(localStorage.getItem('bannedUsersList'));
-    // console.log(bannedUsersList);
-    // bannedUsersList.push(this.user.login);
-    // console.log(bannedUsersList);
-    // localStorage.setItem('bannedUsersList', JSON.stringify(bannedUsersList));
-    localStorage.setItem('bannedUsersList', JSON.stringify(this.user.login));
-
-    // var storedNames = JSON.parse(localStorage.getItem("names"));
+    localStorage.setItem(`${this.user.login}`, this.user.login );
   }
-
 }
