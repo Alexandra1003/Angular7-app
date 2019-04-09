@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild, Router } from '@angular/router';
 
 @Injectable()
 export class BannedUsers implements CanActivateChild {
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      return localStorage.getItem(route.params.login) !== route.params.login;
+  constructor( private router: Router) { }
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const isAllowed = localStorage.getItem(route.params.login) !== route.params.login;
+
+    if (!isAllowed) {
+      this.router.navigate([`/user/${route.params.login}`]);
+    }
+    return isAllowed;
   }
 }

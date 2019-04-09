@@ -13,7 +13,6 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.route.snapshot.data.user;
-    console.log('user!!!', this.user);
   }
 
   showRepos(userData: {}) {
@@ -22,5 +21,6 @@ export class UserComponent implements OnInit {
 
   handleBanClick() {
     localStorage.setItem(`${this.user.login}`, this.user.login );
+    this.router.navigate([`/user/${this.user.login}`]);
   }
 }

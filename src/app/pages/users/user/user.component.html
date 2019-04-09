@@ -1,24 +1,39 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{user.login}}</mat-card-title>
-    <mat-card-actions>
-      <button mat-raised-button color="warn" (click)="handleBanClick()">BAN</button>
-      <button mat-raised-button color="warn" (click)="showRepos({reposUrl: user.repos_url, login: user.login} )">Show Repos</button>
-    </mat-card-actions>
-    <mat-card-subtitle>{{user.repos_url}}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image-md [src]="user.avatar_url" alt="User avatar">
-  <mat-card-content>
-    <p>
-      {{user.url | json}}
-    </p>
-    <p>
-      {{user.type | json}}
-    </p>
-    <p>
-      {{user.created_at | json}}
-    </p>
-  </mat-card-content>
-</mat-card>
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container">
+  <mat-drawer-content>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div class="header-text-wrapper">
+          <mat-card-title>{{user.login}}</mat-card-title>
+          <mat-card-subtitle>{{user.repos_url}}</mat-card-subtitle>
+        </div>
+
+        <mat-card-actions>
+          <button mat-raised-button color="warn" (click)="handleBanClick()">BAN</button>
+          <button mat-raised-button (click)="showRepos({reposUrl: user.repos_url, login: user.login} )">Show
+            Repos</button>
+        </mat-card-actions>
+
+      </mat-card-header>
+
+      <div class="avatar-container">
+        <img mat-card-image-md class="user-avatar" [src]="user.avatar_url" alt="User avatar">
+      </div>
+
+      <mat-card-content>
+        <p>
+          <span class="content-header">User URL:</span> {{user.url | json}}
+        </p>
+        <p>
+          <span class="content-header">Type:</span> {{user.type | json}}
+        </p>
+        <p>
+          <span class="content-header">Created at:</span> {{user.created_at | json}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </mat-drawer-content>
+
+  <mat-drawer mode="side" opened position="end">
+    <router-outlet></router-outlet>
+  </mat-drawer>
+</mat-drawer-container>

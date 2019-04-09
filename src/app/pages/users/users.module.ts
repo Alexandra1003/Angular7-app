@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import { BannedUsers } from 'src/app/core/guards/bannedUsers.guard';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BannedUsers } from 'src/app/core/guards/bannedUsers.guard';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule
   ],
   exports: [UsersComponent, UserComponent, ReposComponent],
   providers: [UsersService, UserResolveService, BannedUsers]
