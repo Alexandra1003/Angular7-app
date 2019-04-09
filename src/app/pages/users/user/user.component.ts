@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from '../../../shared/interfaces/user';
 
 @Component({
@@ -9,20 +9,18 @@ import { IUser } from '../../../shared/interfaces/user';
 })
 export class UserComponent implements OnInit {
   user: IUser;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.user = this.route.snapshot.data.user;
-    console.log(this.user);
+    console.log('user!!!', this.user);
+  }
+
+  showRepos(userData: {}) {
+    this.router.navigate([`/user/${this.user.login}/repos`, userData ]);
   }
 
   handleBanClick() {
-    console.log(111);
-    const bannedUsersList = [];
-    bannedUsersList.push(this.user);
-    localStorage.setItem('bannedUsersList', JSON.stringify(bannedUsersList));
-
-    // var storedNames = JSON.parse(localStorage.getItem("names"));
+    localStorage.setItem(`${this.user.login}`, this.user.login );
   }
-
 }
