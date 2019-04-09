@@ -13,7 +13,6 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.route.snapshot.data.user;
-    console.log('user!!!', this.user);
   }
 
   showRepos(userData: {}) {
