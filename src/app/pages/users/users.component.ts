@@ -2,7 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IUser } from '../../shared/interfaces/user';
 import { UsersService } from './users.service';
 import { Router } from '@angular/router';
-import { MatSort, MatTableDataSource } from '@angular/material';
+
+import { GetUser } from 'src/app/store/actions/user.actions';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from 'src/app/store/state/app.state';
+import { selectSelectedUser } from 'src/app/store/selectors/user.selectors';
 
 @Component({
   selector: 'app-users',
@@ -10,16 +14,19 @@ import { MatSort, MatTableDataSource } from '@angular/material';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  list: MatTableDataSource<IUser>;
-  displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'go'];
+  userName: string;
+  user$ = this._store.pipe(select(selectSelectedUser));
 
-  @ViewChild(MatSort) sort: MatSort;
-  constructor(private userService: UsersService, private router: Router) { }
+  constructor(private _store: Store<IAppState>, private userService: UsersService, private router: Router) { }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(data => {
-      this.list = new MatTableDataSource(data);
-      this.list.sort = this.sort;
+      console.log('data', data)
     });
+  }
+
+  onUserChosen() {
+    this._store.dispatch(new GetUser(this.userName));
+    this.router.navigate(['/user/' + this.userName]);
   }
 }

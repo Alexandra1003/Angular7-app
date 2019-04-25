@@ -1,5 +1,5 @@
 import { RouterReducerState } from '@ngrx/router-store';
-import { IUserState, inititalUserState } from './user.state';
+import { IUserState, initialUserState } from './user.state';
 import { IReposState, initialReposState } from './repos.state';
 
 export interface IAppState {
@@ -9,7 +9,7 @@ export interface IAppState {
 }
 
 export const initialAppState: IAppState = {
-  users: inititalUserState,
+  users: initialUserState,
   repos: initialReposState
 };
 
