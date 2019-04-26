@@ -20,9 +20,6 @@ export class UsersComponent implements OnInit {
   constructor(private _store: Store<IAppState>, private userService: UsersService, private router: Router) { }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe(data => {
-      console.log('data', data)
-    });
   }
 
   onUserChosen() {

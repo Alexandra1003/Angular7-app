@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
-import { Store, select } from '@ngrx/store';
-import { switchMap, map, withLatestFrom } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { switchMap, map } from 'rxjs/operators';
 
-
-import { GetRepos, EReposActions } from '../actions/repos.actions';
+import { GetRepos, EReposActions, GetReposSuccess } from '../actions/repos.actions';
 import { IAppState } from '../state/app.state';
 import { ReposService } from 'src/app/pages/users/user/repos/repos.service';
-import { selectReposList } from '../selectors/repos.selectors';
 
 @Injectable()
 export class ReposEffects {
@@ -15,9 +13,11 @@ export class ReposEffects {
   getRepos$ = this._actions$.pipe(
     ofType<GetRepos>(EReposActions.GetRepos),
     map(action => action.payload),
-    withLatestFrom(this._store.pipe(select(selectReposList))),
-    switchMap(() => {
-      return null;
+    switchMap(reposUrl => {
+      return this._reposService.getAllRepos(reposUrl);
+    }),
+    map(repos => {
+      return new GetReposSuccess(repos);
     })
   );
 

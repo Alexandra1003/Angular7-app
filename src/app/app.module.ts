@@ -24,7 +24,7 @@ import { appReducers } from './store/reducers/app.reducers';
     CoreModule,
     UsersModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects/* , ReposEffects */]),
+    EffectsModule.forRoot([UserEffects, ReposEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router'}),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
